@@ -9,7 +9,10 @@ permissions:
 jobs:
   docker:
     name: docker
-    runs-on: x64
+    # GitHub-hosted (not the repo's `x64` label, which resolves to Grafana's
+    # self-hosted fleet): PR validation must also run for fork PRs, which
+    # cannot use upstream self-hosted runners and would queue forever.
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447e6ce83dd # v6.0.2
